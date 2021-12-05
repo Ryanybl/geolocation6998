@@ -220,7 +220,47 @@ const adminVectorSpecs = [
 				},
 			},
 		},
-	}
+	},
+	{
+		name: 'Regions (full size)',
+		label: 'Tanzania',
+		hierarchyIndex: 0,
+		isDefault: true,
+		showOnHome: true,
+		tableIdentifier: 'modilab.tanzania_geodata:4.tanzania_regions:2',
+		geoVariables: [{ name: 'geoBuf' }],
+		isGeobuf: true,
+		filterVariables: [],
+		metadataVariables: [{ name: 'ADM0_EN', label: 'Country' }],
+		regionNameVariable: { name: 'ADM1_EN' },
+		regionBoundingBoxVariable: { name: 'BBOX' },
+		mapboxSourceType: 'geojson',
+		mapboxLayerType: ['fill', 'line'],
+		mapboxLayerOptions: {
+			fill: {
+				layout: {
+					'fill-sort-key': vectorPriorityByNameMap['Uganda Regions'],
+				},
+				paint: {
+					// conditional styling with 'get' expression: see https://docs.mapbox.com/mapbox-gl-js/style-spec/expressions/#types-number
+					'fill-opacity': ['number', ['get', 'opacity'], DEFAULT_ADMIN_VECTOR_OPACITY],
+					'fill-color': '#787b8c',
+				},
+			},
+			line: {
+				layout: {
+					'line-join': 'round',
+					'line-cap': 'round',
+					'line-sort-key': vectorPriorityByNameMap['Uganda Regions'],
+				},
+				paint: {
+					'line-color': '#787b8c',
+					'line-width': ['interpolate', ['linear'], ['zoom'], 3, 0.5, 10, 2],
+					'line-dasharray': [10, 0],
+				},
+			},
+		},
+	},
 ];
 
 for (let i = 0; i < adminVectorSpecs.length; i++) {

@@ -2,13 +2,21 @@
   "name": "geolocation6998",
   "version": "1.0.0",
   "description": "Columbia World Projects Energy for Productive Use Data Platform",
-  "main": "index.js",
-  "build": "react-scripts build",
+  "main": "index.html",
   "scripts": {
     "start": "npm install && node devServer.js",
-    "build": "./node_modules/.bin/webpack && git add dist"
+    "build": "./node_modules/.bin/webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SEL-Columbia/cwp-epu-data-platform.git"
   },
   "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SEL-Columbia/cwp-epu-data-platform/issues"
+  },
+  "homepage": "https://github.com/SEL-Columbia/cwp-epu-data-platform#readme",
   "pre-commit": [
     "build"
   ],
