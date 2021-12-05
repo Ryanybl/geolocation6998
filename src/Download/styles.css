@@ -1,0 +1,21 @@
+.wrapper {
+	height: 100%;
+	padding: 30px 13px;
+	margin-left: 400px;
+}
+.downloadItem {
+	margin-bottom: 25px;
+	display: block;
+}
+
+.downloadLabel {
+	display: inline-block;
+	margin-bottom: 8px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.downloadLink {
+	color: rgb(0, 152, 72);
+	margin-right: 30px;
+}

@@ -1,0 +1,58 @@
+.appWrapper{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.headerWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 90px;
+}
+
+.header{
+    padding: 14px;
+    margin-left: 400px;
+}
+
+.navigation{
+    padding-left: 404px;
+    background: rgb(0, 152, 72);
+    color: white;
+}
+
+/*.link{*/
+/*    &:active{*/
+/*        background: rgb(55, 64,59);*/
+/*     }*/
+/*    &:hover{*/
+/*        background: rgb(55, 64,59);*/
+/*     }*/
+/*}*/
+
+.link{
+    display: inline-block;
+    padding: 6px 20px;
+    text-decoration: none;
+}
+
+.link.active{
+    background: rgb(55, 64, 59);
+}
+
+.link:hover{
+    background: rgb(55, 64, 59);
+}
+
+.link:hover,
+.link:focus {
+    text-decoration: none;
+}
+
+.bodyWrapper{
+    position: relative;
+    height: calc(100% - 90px);
+}
+
+

@@ -1,0 +1,13 @@
+.aboutWrapper{
+    display: flex;
+    height: 100%;
+    padding: 30px 13px;
+    margin: 0 400px;
+}
+
+.header{
+    font-weight: bold;
+}
+
+
+

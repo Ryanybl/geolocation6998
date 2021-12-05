@@ -1,0 +1,203 @@
+body {
+	margin: 0;
+	width: 100vw;
+}
+
+/* stylelint-disable */
+@media (--phablet) {
+	html {
+		font-size: 0.875rem;
+	}
+}
+
+h1 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 34px;
+	line-height: 46px;
+}
+
+h2 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 26px;
+	line-height: 35px;
+}
+
+h3 {
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 27px;
+}
+
+h4 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+h5 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+h6 {
+	display: inline-block;
+	margin: 0;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 0.9rem;
+}
+
+small {
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-size: 10px;
+	line-height: 14px;
+}
+
+p:not(:last-of-type) {
+	margin-bottom: 6px;
+}
+p {
+	margin-block-end: 0;
+	margin-block-start: 0;
+	-webkit-margin-before: 0;
+	-webkit-margin-after: 0;
+}
+
+strong {
+	font-family: var(--font-extraBold);
+}
+
+hr {
+	margin: 0;
+	border: 0.5px solid var(--color-grey4);
+	clear: both;
+}
+
+#root {
+	width: 100%;
+	height: 100%;
+}
+
+html {
+	color: var(--color-base);
+	height: 100%;
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 400;
+}
+html,
+body {
+	position: relative;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background-color: white;
+	box-sizing: border-box;
+	-moz-osx-font-smoothing: grayscale; /* fixes bold fonts in firefox */
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+	-o-font-smoothing: antialiased;
+	line-height: 1;
+}
+
+body {
+	min-width: 1024px;
+	min-height: 100%;
+	height: auto;
+	overflow: auto;
+	font-size: 14px;
+	line-height: 19px;
+}
+
+a {
+	text-decoration: none;
+	color: var(--color-customDark);
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+	color: var(--color-customDark);
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: 0;
+}
+
+::selection {
+	background: var(--color-customBackground); /* WebKit/Blink Browsers */
+}
+
+img {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+input,
+textarea,
+body,
+text {
+	color: var(--color-base);
+	font-family: 'Nunito Sans', sans-serif;
+	font-weight: 600;
+	font-weight: inherit;
+	text-rendering: geometricPrecision;
+}
+
+button,
+select,
+textarea,
+input,
+text {
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	line-height: inherit;
+	text-rendering: geometricPrecision;
+}
+
+pre {
+	font-family: inherit;
+}
+
+/* Typography resets */
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+th,
+td {
+	margin: 0;
+	padding: 0;
+}
+
+/* Unordered Lists */
+ul li {
+	list-style: none;
+}
+
