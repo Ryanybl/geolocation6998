@@ -30,7 +30,7 @@ module.exports = function ({ env } = {}) {
 		plugins: [
 			new webpack.DefinePlugin({
 				'process.env.REDIVIS_API_TOKEN': JSON.stringify('AAAAXtGcJ4BCOmXb3OT+XuGr1C5NuWyX'),
-				'process.env.ROOT_PATH': JSON.stringify('/'),
+				'process.env.ROOT_PATH': JSON.stringify(''),
 				'process.env.MAPBOX_ACCESS_TOKEN': JSON.stringify(
 					'pk.eyJ1IjoiY29sdW1iaWEtZGF0YXBsYXRmb3JtIiwiYSI6ImNrYXpxbml5bDAwMzEycm11NGpqd2l3b2cifQ.-ql-7fIcoPv0c-m6ezRwjw',
 				),
