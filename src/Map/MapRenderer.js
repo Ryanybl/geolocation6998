@@ -219,11 +219,11 @@ export default class MapRenderer {
 		// define source
 		const source = {
 			type: 'raster',
-			tiles: [`https://api.mapbox.com/v4/${mapboxId}/{z}/{x}/{y}.png?access_token=${mapboxgl.accessToken}`],
+			tiles: [`https://geomap-rasters-pics.s3.amazonaws.com/31test.png`], //[`https://api.mapbox.com/v4/${mapboxId}/{z}/{x}/{y}.png?access_token=${mapboxgl.accessToken}`],
 			tileSize: 512,
-			minzoom: minNativeZoom,
-			maxzoom: maxNativeZoom,
-			bounds,
+			minzoom: 6, // minNativeZoom,
+			maxzoom: 6, // maxNativeZoom,
+			bounds: [28.6,0,33.0, 4.2],
 		};
 
 		// add source to map
