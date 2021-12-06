@@ -40,7 +40,7 @@ class App extends Component {
 		return (
 			<div className={styles.headerWrapper}>
 				<div className={styles.header}>
-					<CustomTitle component={'h4'}>{'Geolocation Project'}</CustomTitle>
+					<CustomTitle component={'h4'}>{'Subsaharan Satellite Imagery Project'}</CustomTitle>
 					<CustomSubTitle component={'h4'}>{'Graphical Landscape in Africa'}</CustomSubTitle>
 				</div>
 				<div className={styles.navigation}>

@@ -33,16 +33,3 @@ export default class Map extends Component {
 		return <div ref={(mapElement) => (this.mapElement = mapElement)} className={styles.wrapper} />;
 	}
 }
-//
-// export default function Map({
-// 	rasterLayers = [],
-// 	vectorLayers = [],
-// 							})
-// {
-// 	const mapElement = useRef(null);
-// 	const [mapRenderer, setMapRenderer] = useState(new MapRenderer(mapElement, { rasterLayers, vectorLayers }))
-// 	useEffect(() => {
-// 		mapRenderer.update({ rasterLayers, vectorLayers });
-// 	})
-// 	return <div ref={mapElement} className={styles.wrapper} />;
-// }
