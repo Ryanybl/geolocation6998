@@ -11,8 +11,8 @@ const rasterGroups = [
 		nameVariable: { name: 'catalog_name' },
 		customNamesByMapboxId: {
 			['columbia-dataplatform.dpfypvjn']: 'Prediction of Woodland Presence (probability)',
-			['columbia-dataplatform.altp17rc']: 'Prediction of Building Presence (probability)',
-			['columbia-dataplatform.5y1gv038']: 'Prediction of Crop Presence (probability)',
+			['columbia-dataplatform.altp17rc']: 'Cropland cover fraction (2015)',  // updated using the previous id.
+			['columbia-dataplatform.5y1gv038']: 'Road Density (2020)', // updated using the previous id.
 		},
 		customLegendsByMapboxId: {
 			['columbia-dataplatform.0xf4g95w']: {
@@ -44,13 +44,13 @@ const rasterGroups = [
 			},
 			['columbia-dataplatform.altp17rc']: {
 				type: 'continuous',
-				min: { name: 'Fewer buildings', color: '#000000' },
-				max: { name: 'More buildings', color: '#ffffff' },
+				min: { name: 'Less cropland', color: '#000000' },
+				max: { name: 'More cropland', color: '#ffffff' },
 			},
 			['columbia-dataplatform.5y1gv038']: {
 				type: 'continuous',
-				min: { name: 'Less crop presence', color: '#000000' },
-				max: { name: 'More crop presence', color: '#ffffff' },
+				min: { name: 'Lower road density', color: '#000000' },
+				max: { name: 'Higher road density', color: '#ffffff' },
 			},
 		},
 	}),

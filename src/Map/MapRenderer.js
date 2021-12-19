@@ -219,11 +219,11 @@ export default class MapRenderer {
 		// define source
 		const source = {
 			type: 'raster',
-			tiles: [`https://geomap-rasters-pics.s3.amazonaws.com/31test.png`], //[`https://api.mapbox.com/v4/${mapboxId}/{z}/{x}/{y}.png?access_token=${mapboxgl.accessToken}`],
+			tiles: [`https://api.mapbox.com/v4/${mapboxId}/{z}/{x}/{y}.png?access_token=${mapboxgl.accessToken}`], 
 			tileSize: 512,
-			minzoom: 6, // minNativeZoom,
-			maxzoom: 6, // maxNativeZoom,
-			bounds: [28.6,0,33.0, 4.2],
+			minzoom: minNativeZoom,
+			maxzoom: maxNativeZoom,
+			bounds,
 		};
 
 		// add source to map
@@ -258,6 +258,33 @@ export default class MapRenderer {
 		return layer;
 	};
 
+	// adding custom picture to the map; 
+	// longitude and latidtude here, should be changed to the user input
+	// 'url' should be the s3 link or anything return from the lambda function
+	// 'coordinates' should be align with the size used in lambda function.
+	addCustomLayerToMap(lon=30, lat=0) {
+		console.log('111 call custom', )
+		this.map.on('load', () => {
+			this.map.addSource('radar', {
+				'type': 'image',
+				'url': 'https://geomap-rasters-pics.s3.amazonaws.com/cat_test.png',
+				'coordinates': [
+				[lon-0.1, lat+0.1],
+				[lon+0.1, lat+0.1],
+				[lon+0.1, lat-0.1],
+				[lon-0.1, lat-0.1]
+				]
+			});
+		this.map.addLayer({
+			id: 'radar-layer',
+			'type': 'raster',
+			'source': 'radar',
+			'paint': {
+			'raster-fade-duration': 0
+			}
+			});
+		});
+	}
 	update(
 		{
 			baseMapLayer,
