@@ -10,7 +10,6 @@ const rasterGroups = [
 		boundingBoxVariable: { name: 'bounding_box' },
 		nameVariable: { name: 'catalog_name' },
 		customNamesByMapboxId: {
-			['columbia-dataplatform.dpfypvjn']: 'Prediction of Woodland Presence (probability)',
 			['columbia-dataplatform.altp17rc']: 'Cropland cover fraction (2015)',  // updated using the previous id.
 			['columbia-dataplatform.5y1gv038']: 'Road Density (2020)', // updated using the previous id.
 		},
@@ -28,20 +27,6 @@ const rasterGroups = [
 					{ name: 'Buildings, cropland, and woody cover', color: '#6d6d6d' },
 				],
 			},
-			['columbia-dataplatform.6abx7bi6']: {
-				type: 'categorical',
-				categories: [
-					{ name: 'Predicted Not Cropland', color: '#0B60B0' },
-					{ name: 'Predicted No Irrigation', color: '#26AC72' },
-					{ name: 'Predicted Irrigation', color: '#ECEC0B' },
-
-				],
-			},
-			['columbia-dataplatform.dpfypvjn']: {
-				type: 'continuous',
-				min: { name: 'Less wooded', color: '#000000' },
-				max: { name: 'More wooded', color: '#ffffff' },
-			},
 			['columbia-dataplatform.altp17rc']: {
 				type: 'continuous',
 				min: { name: 'Less cropland', color: '#000000' },
@@ -53,26 +38,7 @@ const rasterGroups = [
 				max: { name: 'Higher road density', color: '#ffffff' },
 			},
 		},
-	}),
-	new RasterSourceGroup({
-		label: 'Ethiopia',
-		tableIdentifier: `modilab.ethiopia_geodata:2.raster_layer_metadata:1`,
-		mapboxIdVariable: { name: 'mapbox_id' },
-		minNativeZoomVariable: { name: 'zoom_min' },
-		maxNativeZoomVariable: { name: 'zoom_max' },
-		boundingBoxVariable: { name: 'bounding_box' },
-		nameVariable: { name: 'catalog_name' },
-		customLegendsByMapboxId: {
-			['columbia-dataplatform.7w9iml7k']: {
-				type: 'categorical',
-				categories: [
-					{ name: 'In-phase vegetation', color: '#ff0000' },
-					{ name: 'Out-of-phase vegetation', color: '#00ff00' },
-					{ name: 'Dark', color: '#0000ff' },
-				],
-			},
-		},
-	}),
+	})
 ];
 
 export default rasterGroups;

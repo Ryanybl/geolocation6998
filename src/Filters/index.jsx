@@ -72,6 +72,8 @@ const CustomSlider = withStyles({
 	},
 })(Slider);
 
+const isCoordinatesLoading = "test"
+
 const LegendSlider = withStyles({
 	thumb: {
 		backgroundColor: grey[500],
@@ -207,6 +209,7 @@ export default function Filters({
 	isLoadingVectors,
 	isLoadingObservationVectors,
 	isLoadingAdminVectors,
+	isLoadingCoordinatesVectors,
 }) {
 	function handleSelectBaseMapLayer(selectedBaseMapLayerName) {
 		onUpdateBaseMapLayer(selectedBaseMapLayerName);
@@ -470,6 +473,7 @@ export default function Filters({
 	const [showVectors, setShowVectors] = useState(false);
 	const [showObservationVectors, setShowObservationVectors] = useState(false);
 	const [showAdminVectors, setShowAdminVectors] = useState(false);
+	const [showCoordinatesVectors, setShowCoordinatesVectors] = useState(false);
 
 	return (
 		<div className={styles.sideBarWrapper}>
@@ -673,6 +677,30 @@ export default function Filters({
 											);
 										})}
 									</RadioGroup>
+								);
+							})}
+						</CustomCollapse>
+					</CustomFormControl>
+				</div>
+				<div className={styles.sectionWrapper}>
+					<CustomFormControl component="fieldset">
+						<CustomListItem button onClick={() => setShowCoordinatesVectors(!showCoordinatesVectors)}>
+							<CustomListItemText primary={'Coordinates'} />
+							{isLoadingCoordinatesVectors && <CustomCircularProgress />}
+							{showCoordinatesVectors ? <ExpandMore edge={'end'} /> : <ExpandLess edge={'end'} />}
+						</CustomListItem>
+						<CustomCollapse in={showCoordinatesVectors}>
+							{groupOptions(adminVectorLayers).map((group) => {
+								const { label, options } = group;
+								return (
+									<div>
+										<form>
+											<tr> Latitude: <input type="text" name="Latitude" /> </tr>
+											<tr> Longitude: <input type="text" name="Longitude" /> </tr>
+											<tr> Status: {isCoordinatesLoading}</tr>
+											<tr> <input type="submit" value="Submit" /> </tr>
+										</form>
+									</div>
 								);
 							})}
 						</CustomCollapse>

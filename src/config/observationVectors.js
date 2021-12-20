@@ -30,10 +30,6 @@ const observationVectors = [
 			};
 		},
 		metadataVariables: [
-			{ name: 'bp', label: 'Building presence' },
-			{ name: 'cp', label: 'Crop presence' },
-			{ name: 'wp', label: 'Woodland presence' },
-			{ name: 'cs', label: 'Conservation structure' },
 		],
 		mapboxSourceType: 'geojson',
 		mapboxLayerType: 'circle',
