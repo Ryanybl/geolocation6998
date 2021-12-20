@@ -509,54 +509,9 @@ export default function Filters({
 				</div>
 				<div className={styles.sectionWrapper}>
 					<CustomFormControl component="fieldset">
-						<CustomListItem button onClick={() => setShowVectors(!showVectors)}>
-							<CustomListItemText primary={'Pre-existing maps & data'} />
-							{isLoadingVectors && <CustomCircularProgress />}
-							{!!selectedVectorLayerNamesSet.size && (
-								<Chip size={'small'} label={selectedVectorLayerNamesSet.size} />
-							)}
-							{showVectors ? <ExpandMore edge={'end'} /> : <ExpandLess edge={'end'} />}
-						</CustomListItem>
-						<CustomCollapse in={showVectors}>
-							{groupOptions(vectorLayers).map((group) => {
-								const { label, options } = group;
-								return (
-									<React.Fragment key={label}>
-										<CustomFormHelperText>{label}</CustomFormHelperText>
-										<FormGroup>
-											{options.map((option) => {
-												const { name } = option;
-												const checked = selectedVectorLayerNamesSet.has(name);
-												return (
-													<React.Fragment key={name}>
-														<CustomFormControlLabel
-															control={
-																<CustomSwitch
-																	checked={checked}
-																	onChange={(e) =>
-																		handleToggleVectorLayer(name, e.target.checked)
-																	}
-																	name={name}
-																/>
-															}
-															label={name}
-														/>
-														{renderLegend(checked, option)}
-													</React.Fragment>
-												);
-											})}
-										</FormGroup>
-									</React.Fragment>
-								);
-							})}
-						</CustomCollapse>
-					</CustomFormControl>
-				</div>
-				<div className={styles.sectionWrapper}>
-					<CustomFormControl component="fieldset">
 						<CustomListItem button onClick={() => setShowRasters(!showRasters)}>
-							<CustomListItemText primary={'Landscape predictions'} />
-							{isLoadingRasters && <CustomCircularProgress />}
+							<CustomListItemText primary={'Explore Existing Data'} /> 
+ 							{isLoadingRasters && <CustomCircularProgress />}
 							{!!selectedRasterLayerNamesSet.size && (
 								<Chip size={'small'} label={selectedRasterLayerNamesSet.size} />
 							)}
@@ -592,91 +547,6 @@ export default function Filters({
 											})}
 										</FormGroup>
 									</React.Fragment>
-								);
-							})}
-						</CustomCollapse>
-					</CustomFormControl>
-				</div>
-				<div className={styles.sectionWrapper}>
-					<CustomFormControl component="fieldset">
-						<CustomListItem button onClick={() => setShowObservationVectors(!showObservationVectors)}>
-							<CustomListItemText primary={'Landscape observations'} />
-							{isLoadingObservationVectors && <CustomCircularProgress />}
-							{!!selectedObservationVectorLayerNamesSet.size && (
-								<Chip size={'small'} label={selectedObservationVectorLayerNamesSet.size} />
-							)}
-							{showObservationVectors ? <ExpandMore edge={'end'} /> : <ExpandLess edge={'end'} />}
-						</CustomListItem>
-						<CustomCollapse in={showObservationVectors}>
-							{groupOptions(observationVectorLayers).map((group) => {
-								const { label, options } = group;
-								return (
-									<React.Fragment key={label}>
-										<CustomFormHelperText>{label}</CustomFormHelperText>
-										<FormGroup>
-											{options.map((option) => {
-												const { name } = option;
-												const checked = selectedObservationVectorLayerNamesSet.has(name);
-												return (
-													<React.Fragment key={name}>
-														<CustomFormControlLabel
-															control={
-																<CustomSwitch
-																	checked={checked}
-																	onChange={(e) =>
-																		handleToggleObservationVectorLayer(
-																			name,
-																			e.target.checked,
-																		)
-																	}
-																	name={name}
-																/>
-															}
-															label={name}
-														/>
-														{renderLegend(checked, option)}
-													</React.Fragment>
-												);
-											})}
-										</FormGroup>
-									</React.Fragment>
-								);
-							})}
-						</CustomCollapse>
-					</CustomFormControl>
-				</div>
-				<div className={styles.sectionWrapper}>
-					<CustomFormControl component="fieldset">
-						<CustomListItem button onClick={() => setShowAdminVectors(!showAdminVectors)}>
-							<CustomListItemText primary={'Admin polygons'} />
-							{isLoadingAdminVectors && <CustomCircularProgress />}
-							{showAdminVectors ? <ExpandMore edge={'end'} /> : <ExpandLess edge={'end'} />}
-						</CustomListItem>
-						<CustomCollapse in={showAdminVectors}>
-							{groupOptions(adminVectorLayers).map((group) => {
-								const { label, options } = group;
-								const selectedAdminVectorLayerName = selectedAdminVectorLayerNamesByLabel[label];
-								return (
-									<RadioGroup
-										aria-label="Admin polygons"
-										name="Admin polygons"
-										value={selectedAdminVectorLayerName}
-										key={label}
-										onChange={(e) => handleSelectAdminVectorLayers(label, e.target.value)}
-									>
-										<CustomFormHelperText>{label}</CustomFormHelperText>
-										{options.map((option) => {
-											const { name } = option;
-											return (
-												<CustomFormControlLabel
-													key={name}
-													value={name}
-													control={<CustomRadio />}
-													label={name}
-												/>
-											);
-										})}
-									</RadioGroup>
 								);
 							})}
 						</CustomCollapse>
