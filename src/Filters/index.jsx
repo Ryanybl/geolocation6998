@@ -21,12 +21,12 @@ import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
-
-import vectorStyles from './vectorStyles';
+// import axios from 'axios'
 
 import groupOptions from '../groupOptions';
 
 import styles from './styles.css';
+import { response } from 'express';
 
 const CustomSwitch = withStyles({
 	switchBase: {
@@ -72,7 +72,6 @@ const CustomSlider = withStyles({
 	},
 })(Slider);
 
-const isCoordinatesLoading = "test"
 
 const LegendSlider = withStyles({
 	thumb: {
@@ -188,41 +187,22 @@ function sortValues(a, b) {
 export default function Filters({
 	baseMapLayers,
 	rasterLayers,
-	vectorLayers,
-	observationVectorLayers,
 	adminVectorLayers,
-	selectedAdminVectorLayerNamesByLabel,
 	vectorFiltersByNamesMap,
 	selectedBaseMapLayerName,
 	selectedRasterLayerNamesSet,
 	rasterOpacityByNameMap,
 	selectedVectorLayerNamesSet,
-	selectedObservationVectorLayerNamesSet,
 	onUpdateBaseMapLayer,
 	onUpdateRasterLayers,
 	onUpdateRasterLayerOpacityByNameMap,
 	onUpdateVectorLayers,
-	onUpdateObservationVectorLayers,
-	onUpdateAdminVectorLayers,
 	onUpdateVectorFilters,
 	isLoadingRasters,
-	isLoadingVectors,
-	isLoadingObservationVectors,
-	isLoadingAdminVectors,
 	isLoadingCoordinatesVectors,
 }) {
 	function handleSelectBaseMapLayer(selectedBaseMapLayerName) {
 		onUpdateBaseMapLayer(selectedBaseMapLayerName);
-	}
-
-	function handleToggleVectorLayer(name, checked) {
-		let nextSelectedVectorLayerNamesSet = new Set([...selectedVectorLayerNamesSet]);
-		if (checked) {
-			nextSelectedVectorLayerNamesSet.add(name);
-		} else {
-			nextSelectedVectorLayerNamesSet.delete(name);
-		}
-		onUpdateVectorLayers(nextSelectedVectorLayerNamesSet);
 	}
 
 	function handleToggleRasterLayer(name, checked) {
@@ -239,25 +219,6 @@ export default function Filters({
 		let nextRasterOpacityByNameMap = { ...rasterOpacityByNameMap };
 		nextRasterOpacityByNameMap[name] = opacity;
 		onUpdateRasterLayerOpacityByNameMap(nextRasterOpacityByNameMap);
-	}
-
-	function handleToggleObservationVectorLayer(name, checked) {
-		let nextSelectedObservationVectorLayerNamesSet = new Set([...selectedObservationVectorLayerNamesSet]);
-		if (checked) {
-			nextSelectedObservationVectorLayerNamesSet.add(name);
-		} else {
-			nextSelectedObservationVectorLayerNamesSet.delete(name);
-		}
-		onUpdateObservationVectorLayers(nextSelectedObservationVectorLayerNamesSet);
-	}
-
-	function handleSelectAdminVectorLayers(selectedAdminVectorLayerLabel, selectedAdminVectorLayerName) {
-		let nextSelectedAdminVectorLayerNamesByLabel = {
-			...selectedAdminVectorLayerNamesByLabel,
-			[selectedAdminVectorLayerLabel]: selectedAdminVectorLayerName,
-		};
-
-		onUpdateAdminVectorLayers(nextSelectedAdminVectorLayerNamesByLabel);
 	}
 
 	function handleToggleFilter(checked, value, filterName, vectorName) {
@@ -283,6 +244,13 @@ export default function Filters({
 				},
 			},
 		});
+	}
+
+	function handleSubmitCoordinates(){
+		var url = "https://oqbbx763ki.execute-api.us-east-1.amazonaws.com/dev/crop?latitude=" + 
+		latitude.toString() + "&longitude=" + longitude.toString();
+		response = axios.get(url)
+		console.log(response)
 	}
 
 	function renderLegend(checked, option) {
@@ -470,10 +438,12 @@ export default function Filters({
 
 	const [showBasemap, setShowBasemap] = useState(false);
 	const [showRasters, setShowRasters] = useState(false);
-	const [showVectors, setShowVectors] = useState(false);
-	const [showObservationVectors, setShowObservationVectors] = useState(false);
-	const [showAdminVectors, setShowAdminVectors] = useState(false);
 	const [showCoordinatesVectors, setShowCoordinatesVectors] = useState(false);
+	const [latitude, setLatitude] = useState(0.0);
+	const [longitude, setLongitude] = useState(0.0);
+	const [isCoordinatesLoading, setIsCoordinatesLoading] = useState("test");
+
+	
 
 	return (
 		<div className={styles.sideBarWrapper}>
@@ -563,14 +533,12 @@ export default function Filters({
 							{groupOptions(adminVectorLayers).map((group) => {
 								const { label, options } = group;
 								return (
-									<div>
-										<form>
-											<tr> Latitude: <input type="text" name="Latitude" /> </tr>
-											<tr> Longitude: <input type="text" name="Longitude" /> </tr>
-											<tr> Status: {isCoordinatesLoading}</tr>
-											<tr> <input type="submit" value="Submit" /> </tr>
-										</form>
-									</div>
+									<table>
+										<tr> Latitude: <input type="text" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}/> </tr>
+										<tr> Longitude: <input type="text" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}/> </tr>
+										<tr> Status: {isCoordinatesLoading}</tr>
+										<tr> <button onClick={handleSubmitCoordinates}>Apply</button> </tr>
+									</table>
 								);
 							})}
 						</CustomCollapse>
