@@ -503,7 +503,7 @@ export default function Filters({
 						</CustomCollapse>
 					</CustomFormControl>
 				</div>
-				<div className={styles.sectionWrapper}>
+				{/* <div className={styles.sectionWrapper}>
 					<CustomFormControl component="fieldset">
 						<CustomListItem button onClick={() => setShowVectors(!showVectors)}>
 							<CustomListItemText primary={'Pre-existing maps & data'} />
@@ -547,12 +547,12 @@ export default function Filters({
 							})}
 						</CustomCollapse>
 					</CustomFormControl>
-				</div>
+				</div> */}
 				<div className={styles.sectionWrapper}>
 					<CustomFormControl component="fieldset">
 						<CustomListItem button onClick={() => setShowRasters(!showRasters)}>
-							<CustomListItemText primary={'Landscape predictions'} />
-							{isLoadingRasters && <CustomCircularProgress />}
+							<CustomListItemText primary={'Explore Existing Data'} /> 
+ 							{isLoadingRasters && <CustomCircularProgress />}
 							{!!selectedRasterLayerNamesSet.size && (
 								<Chip size={'small'} label={selectedRasterLayerNamesSet.size} />
 							)}
@@ -593,7 +593,7 @@ export default function Filters({
 						</CustomCollapse>
 					</CustomFormControl>
 				</div>
-				<div className={styles.sectionWrapper}>
+				{/* <div className={styles.sectionWrapper}>
 					<CustomFormControl component="fieldset">
 						<CustomListItem button onClick={() => setShowObservationVectors(!showObservationVectors)}>
 							<CustomListItemText primary={'Landscape observations'} />
@@ -640,8 +640,8 @@ export default function Filters({
 							})}
 						</CustomCollapse>
 					</CustomFormControl>
-				</div>
-				<div className={styles.sectionWrapper}>
+				</div> */}
+				{/* <div className={styles.sectionWrapper}>
 					<CustomFormControl component="fieldset">
 						<CustomListItem button onClick={() => setShowAdminVectors(!showAdminVectors)}>
 							<CustomListItemText primary={'Admin polygons'} />
@@ -677,7 +677,7 @@ export default function Filters({
 							})}
 						</CustomCollapse>
 					</CustomFormControl>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);
