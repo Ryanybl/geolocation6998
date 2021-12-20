@@ -3,12 +3,25 @@ import './styles.css';
 import baseMaps from '../config/baseMaps';
 
 import getAdminRegionId from '../getAdminRegionId';
-
 mapboxgl.accessToken = process.env.MAPBOX_ACCESS_TOKEN;
 
 function getLayerIdentifier({ name, label }, isAdminRegion = false) {
 	return isAdminRegion ? getAdminRegionId({ name, label }) : name;
 }
+
+var customLayer;
+
+if (localStorage.getItem( 'customLayer' ) == null) {
+	customLayer = {
+		latitude: 0,
+		longitude: 0,
+		url: "url"
+	}
+}else {
+	customLayer = JSON.parse(localStorage.getItem( 'customLayer' ));
+}
+
+
 
 const DEFAULT_CENTER = [33, 1]; // [lng, lat]
 const DEFAULT_ZOOM = 7;
@@ -262,12 +275,15 @@ export default class MapRenderer {
 	// longitude and latidtude here, should be changed to the user input
 	// 'url' should be the s3 link or anything return from the lambda function
 	// 'coordinates' should be align with the size used in lambda function.
-	addCustomLayerToMap(lon=30, lat=0) {
+	addCustomLayerToMap(lon, lat, url){
 		console.log('111 call custom', )
+		console.log(lon)
+		console.log(lat)
+		console.log(url)
 		this.map.on('load', () => {
 			this.map.addSource('radar', {
 				'type': 'image',
-				'url': 'https://geomap-rasters-pics.s3.amazonaws.com/cat_test.png',
+				'url': url,
 				'coordinates': [
 				[lon-0.1, lat+0.1],
 				[lon+0.1, lat+0.1],
@@ -402,6 +418,15 @@ export default class MapRenderer {
 						this.map.setPaintProperty(id, 'raster-opacity', rasterLayer.opacity);
 					}
 				}
+			}
+			
+			console.log("in renderer")
+			console.log(customLayer)
+
+			if (customLayer.latitude != 0.0) {
+				console.log("in update")
+				console.log(customLayer.url)
+				this.addCustomLayerToMap(customLayer.longitude, customLayer.latitude, customLayer.url)
 			}
 
 			const vectorLayerIdentifiersSet = new Set(

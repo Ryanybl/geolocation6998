@@ -2,10 +2,10 @@
   "name": "geolocation6998",
   "version": "1.0.0",
   "description": "Columbia World Projects Energy for Productive Use Data Platform",
-  "main": "index.html",
+  "main": "index.jsx",
   "scripts": {
     "start": "npm install && node devServer.js",
-    "build": "./node_modules/.bin/webpack"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,6 @@
   "pre-commit": [
     "build"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.15.5",
     "@babel/plugin-proposal-class-properties": "7.14.5",
@@ -32,16 +31,16 @@
     "@material-ui/icons": "4.9.1",
     "babel-eslint": "10.1.0",
     "babel-loader": "8.2.2",
-    "core-js": "3.18.1",
     "chroma-js": "2.1.0",
+    "core-js": "3.18.1",
     "css-loader": "6.3.0",
-    "express": "4.17.1",
     "eslint": "7.32.0",
     "eslint-import-resolver-webpack": "0.13.1",
     "eslint-plugin-import": "2.24.2",
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-react": "7.26.1",
+    "express": "4.17.1",
     "geobuf": "3.0.1",
     "mapbox-gl": "1.11.0",
     "marked": "1.1.0",
@@ -56,6 +55,7 @@
     "react-router-dom": "5.2.0",
     "react-select": "3.1.0",
     "redivis": "0.2.3",
+    "style-loader": "3.3.0",
     "stylelint": "13.3.2",
     "stylelint-config-prettier": "8.0.1",
     "stylelint-config-recommended": "3.0.0",
@@ -64,7 +64,6 @@
     "stylelint-order": "4.0.0",
     "stylelint-prettier": "1.1.2",
     "stylelint-selector-tag-no-without-class": "2.0.3",
-    "style-loader": "3.3.0",
     "text-loader": "0.0.1",
     "webpack": "5.56.1",
     "webpack-cli": "4.8.0",
@@ -80,5 +79,8 @@
     "bracketSpacing": true,
     "jsxBracketSameLine": false,
     "arrowParens": "always"
+  },
+  "dependencies": {
+    "axios": "^0.24.0"
   }
 }

@@ -21,12 +21,16 @@ import Collapse from '@material-ui/core/Collapse';
 import List from '@material-ui/core/List';
 import Slider from '@material-ui/core/Slider';
 import Tooltip from '@material-ui/core/Tooltip';
+import axios from 'axios'
 
 import vectorStyles from './vectorStyles';
 
 import groupOptions from '../groupOptions';
 
 import styles from './styles.css';
+
+import MapRenderer from '../Map/MapRenderer'
+
 
 const CustomSwitch = withStyles({
 	switchBase: {
@@ -185,6 +189,12 @@ function sortValues(a, b) {
 	}
 }
 
+export var customLayer = {
+	longitude: 0.0,
+	latitude: 0.0,
+	url: "none"
+};
+
 export default function Filters({
 	baseMapLayers,
 	rasterLayers,
@@ -214,6 +224,24 @@ export default function Filters({
 	function handleSelectBaseMapLayer(selectedBaseMapLayerName) {
 		onUpdateBaseMapLayer(selectedBaseMapLayerName);
 	}
+
+	async function handleSubmitCoordinates(){
+		const url = "http://serverlarge-env.eba-ztfd5v5j.us-east-1.elasticbeanstalk.com/" + 
+		latitude.toString() + "/" + longitude.toString();
+		fetch(url)
+			.then(response => response.json())
+			.then(data => {
+				customLayer = {
+					"longitude": longitude,
+					"latitude": latitude,
+					"url": data.url
+				};
+				localStorage.setItem('customLayer', JSON.stringify(customLayer));
+				window.location.reload(true);
+			}
+			);		
+	}
+
 
 	function handleToggleVectorLayer(name, checked) {
 		let nextSelectedVectorLayerNamesSet = new Set([...selectedVectorLayerNamesSet]);
@@ -470,10 +498,11 @@ export default function Filters({
 
 	const [showBasemap, setShowBasemap] = useState(false);
 	const [showRasters, setShowRasters] = useState(false);
-	const [showVectors, setShowVectors] = useState(false);
-	const [showObservationVectors, setShowObservationVectors] = useState(false);
-	const [showAdminVectors, setShowAdminVectors] = useState(false);
 	const [showCoordinatesVectors, setShowCoordinatesVectors] = useState(false);
+	const [latitude, setLatitude] = useState(0.0);
+	const [longitude, setLongitude] = useState(0.0);
+	const [isCoordinatesLoading, setIsCoordinatesLoading] = useState("test");
+
 
 	return (
 		<div className={styles.sideBarWrapper}>
@@ -563,14 +592,12 @@ export default function Filters({
 							{groupOptions(adminVectorLayers).map((group) => {
 								const { label, options } = group;
 								return (
-									<div>
-										<form>
-											<tr> Latitude: <input type="text" name="Latitude" /> </tr>
-											<tr> Longitude: <input type="text" name="Longitude" /> </tr>
-											<tr> Status: {isCoordinatesLoading}</tr>
-											<tr> <input type="submit" value="Submit" /> </tr>
-										</form>
-									</div>
+									<table>
+										<tr> Latitude: <input type="text" name="Latitude" value={latitude} onChange={(e) => setLatitude(e.target.value)}/> </tr>
+										<tr> Longitude: <input type="text" name="Longitude" value={longitude} onChange={(e) => setLongitude(e.target.value)}/> </tr>
+										<tr> Status: {isCoordinatesLoading}</tr>
+										<tr> <button onClick={handleSubmitCoordinates}>Apply</button> </tr>
+									</table>
 								);
 							})}
 						</CustomCollapse>
